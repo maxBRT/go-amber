@@ -7,7 +7,6 @@ import (
 )
 
 func checkArgs() {
-	fmt.Println(os.Args[2])
 	if len(os.Args) < 2 {
 		fmt.Println("Not enough arguments")
 		os.Exit(1)
@@ -39,7 +38,7 @@ func main() {
 	cmd := handler.Commands{}
 
 	cmd.Register("generate", handler.Generate)
-
+	cmd.Register("parse", handler.MarkdownToHtml)
 	runCommandEntered(cmd)
 
 }
