@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/maxBRT/go-amber/utils/handler"
+	"github.com/maxBRT/go-amber/internal/handler"
 	"os"
 )
 
@@ -38,7 +38,9 @@ func main() {
 	cmd := handler.Commands{}
 
 	cmd.Register("generate", handler.Generate)
-	cmd.Register("parse", handler.MarkdownToHtml)
+	cmd.Register("parse", handler.ParseToHtml)
+	cmd.Register("new", handler.NewFile)
+
 	runCommandEntered(cmd)
 
 }
