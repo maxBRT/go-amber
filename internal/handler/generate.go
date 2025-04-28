@@ -44,12 +44,13 @@ func Generate(cmd Command) error {
 
 	// Write initial content files
 	contentFiles := map[string]string{
-		filepath.Join(baseDir, "content", "index.md"):                homeIndex,
-		filepath.Join(baseDir, "content", "blog", "index.md"):        blogIndex,
-		filepath.Join(baseDir, "content", "blog", "post1.md"):        basePost,
-		filepath.Join(baseDir, "content", "projects", "index.md"):    projectIndex,
-		filepath.Join(baseDir, "content", "projects", "project1.md"): baseProject,
-		filepath.Join(baseDir, "templates", "base.html"):             baseTemplate,
+		filepath.Join(baseDir, "content", "index.md"):                   homeIndex,
+		filepath.Join(baseDir, "content", "blog", "index.md"):           blogIndex,
+		filepath.Join(baseDir, "content", "blog", "post1.md"):           basePost,
+		filepath.Join(baseDir, "content", "projects", "index.md"):       projectIndex,
+		filepath.Join(baseDir, "content", "projects", "project1.md"):    baseProject,
+		filepath.Join(baseDir, "templates", "base.html"):                baseTemplate,
+		filepath.Join(baseDir, "output", "static", "css", "styles.css"): styles,
 	}
 
 	for path, content := range contentFiles {

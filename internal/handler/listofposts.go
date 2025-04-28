@@ -2,6 +2,7 @@ package handler
 
 import (
 	"bytes"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -13,7 +14,6 @@ func generateFileListHTML(files []os.FileInfo, outputPath string) string {
 		if file.Name() == "index.html" {
 			continue // Skip the index.html file
 		}
-		buffer.WriteString("<div class=content-list>")
 		if !file.IsDir() { // Skip directories
 			if strings.Contains(outputPath, "blog") {
 				pathToFile := filepath.Join("content", "blog", strings.TrimSuffix(file.Name(), ".html")+".md")
@@ -21,23 +21,13 @@ func generateFileListHTML(files []os.FileInfo, outputPath string) string {
 				if err != nil {
 					panic(err)
 				}
-				// Start the list item
-				buffer.WriteString(`<div class="list-item-blog">`)
-				buffer.WriteString(`<li><a href="`)
-				// Add the file path to the href attribute
-				buffer.WriteString(filepath.Join(file.Name()))
-				buffer.WriteString(`">`)
-				// Add the file name as the link text
-				buffer.WriteString(metadata.Title)
-				buffer.WriteString(`</a>`)
-				buffer.WriteString("<p class=description>")
-				buffer.WriteString(metadata.Description)
-				buffer.WriteString("</p>")
-				buffer.WriteString("<p class=date>")
-				buffer.WriteString(metadata.Date)
-				buffer.WriteString("</p>")
-				buffer.WriteString("</li>")
-				buffer.WriteString("</div>")
+				buffer.WriteString(fmt.Sprintf(`
+	<div class="content-item">
+		<a class="content-link" href="%s">%s</a>
+		<p class="description">%s</p>
+		<p class="date">%s</p>
+	</div>
+`, filepath.Join(file.Name()), metadata.Title, metadata.Description, metadata.Date))
 			}
 
 			if strings.Contains(outputPath, "projects") {
@@ -46,28 +36,16 @@ func generateFileListHTML(files []os.FileInfo, outputPath string) string {
 				if err != nil {
 					panic(err)
 				}
-
-				// Start the list item
-				buffer.WriteString(`<div class="list-item-project">`)
-				buffer.WriteString("<img src=" + metadata.Image + " alt=Project class=project-image>")
-				buffer.WriteString(`<li><a href="`)
-				// Add the file path to the href attribute
-				buffer.WriteString(filepath.Join(file.Name()))
-				buffer.WriteString(`">`)
-				// Add the file name as the link text
-				buffer.WriteString(metadata.Title)
-				buffer.WriteString(`</a>`)
-				buffer.WriteString("<p class=description>")
-				buffer.WriteString(metadata.Description)
-				buffer.WriteString("</p>")
-				buffer.WriteString("<p class=date>")
-				buffer.WriteString(metadata.Date)
-				buffer.WriteString("</p>")
-				buffer.WriteString("</li>")
-				buffer.WriteString("</div>")
+				buffer.WriteString(fmt.Sprintf(`
+	<img src="%s" class="project-image" alt="project">
+	<div class="content-item">
+		<a  href="%s">%s</a>
+		<p>%s</p>
+		<p>%s</p>
+	</div>
+`, metadata.Image, filepath.Join(file.Name()), metadata.Title, metadata.Description, metadata.Date))
 			}
 		}
 	}
-	buffer.WriteString("</div>")
 	return buffer.String() // Return the complete HTML string
 }
