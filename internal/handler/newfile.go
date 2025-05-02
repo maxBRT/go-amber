@@ -54,7 +54,7 @@ title: "Lorem ipsum"
 date: 2000-01-01
 author: "John Doe"
 description: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia ut velit a ultricies. Etiam at rutrum mauris. Fusce nibh ex, commodo ut dui eu, blandit mattis massa. Curabitur fringilla est a turpis porta tempor. Nunc aliquam faucibus magna, vel."
-image: "/satic/post.png"
+image: ""
 draft: true
 ---
 # Lorem ipsum
@@ -72,15 +72,30 @@ Ut vel rhoncus turpis, sit amet maximus enim. Praesent at efficitur lacus, ac da
 
 // Project
 var baseProject string = `---
-title: "Base Project"
+title: "Lorem Project"
 date: 2000-01-01
 author: "John Doe"
 description: "This is a base post"
 image: "/static/images/project.png"
-draft: true
+draft: false
 ---
-# Project 1
+# Project Overview
 
-Details about the project
+## Introduction
+This is a placeholder for your project description. Replace this text with actual information about your project, including its purpose, key features, and technologies used.
 
-[Link To The project](https://www.github.com/)`
+## Features
+- Feature 1: Brief description of what this feature does
+- Feature 2: Brief description of what this feature does
+- Feature 3: Brief description of what this feature does
+
+## Technologies
+- Technology 1
+- Technology 2
+- Technology 3
+
+## Implementation Details
+Provide more in-depth information about how the project was implemented, challenges faced, and solutions developed.
+
+[Link To The project](https://www.github.com/)
+`
