@@ -21,6 +21,10 @@ func generateFileListHTML(files []os.FileInfo, outputPath string) string {
 				if err != nil {
 					panic(err)
 				}
+				if metadata.Draft {
+					continue // Skip draft files
+				}
+
 				buffer.WriteString(fmt.Sprintf(`
 	<div class="content-item">
 		<a class="content-link" href="%s">%s</a>

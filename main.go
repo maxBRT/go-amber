@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/maxBRT/go-amber/internal/handler"
 	"os"
+
+	"github.com/maxBRT/go-amber/internal/handler"
 )
 
 func checkArgs() {
@@ -37,8 +38,8 @@ func main() {
 	// Register available commands
 	cmd := handler.Commands{}
 
-	cmd.Register("generate", handler.Generate)
-	cmd.Register("parse", handler.ParseToHtml)
+	cmd.Register("generate", handler.GenerateRepo)
+	cmd.Register("build", handler.Build)
 	cmd.Register("new", handler.NewFile)
 
 	runCommandEntered(cmd)
